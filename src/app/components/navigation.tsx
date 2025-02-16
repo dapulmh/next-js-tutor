@@ -1,11 +1,13 @@
 "use client";
+import { SignedIn, SignedOut } from "@clerk/clerk-react";
+import { SignInButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export const Navigation = () => {
   const pathname = usePathname();
   return (
-    <nav>
+    <nav className="flex justify-center items-center p-4">
       <Link
         href={"/"}
         className={pathname === "/" ? "font-bold mr-44" : "mr-4 text-blue-500"}
@@ -30,6 +32,12 @@ export const Navigation = () => {
       >
         Product 1
       </Link>
+      <SignedOut>
+        <SignInButton mode="modal"></SignInButton>
+      </SignedOut>
+      <SignedIn>
+        <UserButton></UserButton>
+      </SignedIn>
     </nav>
   );
 };
